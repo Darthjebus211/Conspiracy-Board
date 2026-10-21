@@ -1,5 +1,5 @@
 # Conspiracy-Board
-Foundry VTT module for a conspiracy board controllable by players
+Foundry VTT module for a conspiracy board controllable by players. This was coded entirely using AI, mostly Claud Opus 5.5
 # Conspiracy Board 2.8.0 (Foundry VTT v14)
 
 ## Install / upgrade
