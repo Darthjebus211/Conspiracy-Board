@@ -1,0 +1,19 @@
+{
+  "id": "conspiracy-board",
+  "title": "Conspiracy Board",
+  "description": "A shared conspiracy board: players pin clue cards in three types or as character art, linked to journal entries and tied together with string that follows the cards as they move. Scene Levels aware.",
+  "version": "2.9.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "You"
+    }
+  ],
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "socket": true
+}
