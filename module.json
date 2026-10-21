@@ -3,6 +3,8 @@
   "title": "Conspiracy Board",
   "description": "A shared conspiracy board: players pin clue cards in three types or as character art, linked to journal entries and tied together with string that follows the cards as they move. Scene Levels aware.",
   "version": "2.9.0",
+  "manifest": "https://github.com/Darthjebus211/Conspiracy-Board/releases/download/2.9.0/module.json",
+  "download": "https://github.com/Darthjebus211/Conspiracy-Board/releases/download/2.9.0/module.zip",
   "compatibility": {
     "minimum": "14",
     "verified": "14"
