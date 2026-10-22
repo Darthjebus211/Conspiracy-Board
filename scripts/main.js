@@ -729,3 +729,33 @@ Hooks.on("renderSceneControls", () => {
     queueRedraw();
   }
 });
+
+/* ------------------------- Macro compendium fallback ------------------------- */
+
+// The macro compendium ships as a LevelDB folder. If it opens empty (a damaged or
+// partly copied pack), the active GM refills it from the JSON source in data/macros.
+const MACRO_SOURCES = ["data/macros/cb-change-drawing-author.json"];
+
+Hooks.once("ready", async () => {
+  if (game.user !== game.users.activeGM) return;
+  const pack = game.packs.get(`${MOD}.macros`);
+  if (!pack) return console.warn(`${MOD} | macro compendium is not registered`);
+  try {
+    const index = await pack.getIndex();
+    const wasLocked = pack.locked;
+    let created = 0;
+    for (const file of MACRO_SOURCES) {
+      const res = await fetch(`modules/${MOD}/${file}`);
+      if (!res.ok) { console.warn(`${MOD} | could not read ${file}`); continue; }
+      const data = await res.json();
+      if (index.has(data._id)) continue;
+      if (pack.locked) await pack.configure({ locked: false });
+      await Macro.implementation.create(data, { pack: pack.collection, keepId: true });
+      created++;
+    }
+    if (wasLocked && !pack.locked) await pack.configure({ locked: true });
+    if (created) console.log(`${MOD} | restored ${created} macro(s) to the compendium`);
+  } catch (err) {
+    console.error(`${MOD} | could not fill the macro compendium`, err);
+  }
+});

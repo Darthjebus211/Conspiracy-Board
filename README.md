@@ -1,9 +1,11 @@
-# Conspiracy-Board
-Foundry VTT module for a conspiracy board controllable by players. This was coded entirely using AI, mostly Claud Opus 5.5
-# Conspiracy Board 2.8.0 (Foundry VTT v14)
+# Conspiracy Board 2.10.2 (Foundry VTT v14)
 
 ## Install / upgrade
-Replace `Data/modules/conspiracy-board/` with this folder. Existing cards and strings are kept.
+Stop Foundry (or return to Setup), **delete** `Data/modules/conspiracy-board/`, then put this folder in its place — copying over the top can leave a stale pack behind. Existing cards and strings are kept.
+
+## Changes in 2.10.2
+- New **compendium of macros** ("Conspiracy Board Macros") in the module's Compendium tab, holding **Conspiracy Board: Change Drawing Author** — a GM script macro that reassigns the author of every drawing on the current scene to a user of your choosing, GMs included.
+- Fixed the macro compendium appearing empty: the pack is now a proper database folder (`packs/macros/`), and if it ever opens empty the GM's client refills it from `data/macros/` on load.
 
 ## Changes in 2.9.0
 - New **lone pin** tool: place a pin with no card, to tie strings to as a junction or waypoint. Pins can link a journal and are moved or deleted like any drawing.
@@ -25,6 +27,14 @@ Replace `Data/modules/conspiracy-board/` with this folder. Existing cards and st
 
 ## Changes in 2.7.1
 - Fixed strings no longer being drawn. The overlay that draws them is now destroyed when a canvas tears down and rebuilt for the next scene, instead of being reused after its graphics had been released. It is also added on top of the interface so it can't be hidden.
+
+## Macros
+
+The module ships a compendium of macros. Open the **Compendiums** tab, open **Conspiracy Board Macros**, and drag a macro onto your hotbar, or right-click it and choose *Import*.
+
+- **Conspiracy Board: Change Drawing Author** (GM) — asks which user should own the drawings, then reassigns the author of every drawing on the scene you are viewing. GMs and assistant GMs appear in the list as well as players, so authorship can be handed to a GM or taken back from one. The dialog shows how many drawings are on each Scene Level and the first few current authors before you commit.
+
+  Worth knowing: **author is not ownership**. Reassigning it re-labels who made a drawing; it neither grants the new author edit rights nor takes any away from the old one. Foundry forms an author id as `user.id.slice(0, 16)`, while drawings made from the setup screen can carry the full user id, so the macro recognises both.
 
 ## Clue types
 | Type | Font size | Default colour |
